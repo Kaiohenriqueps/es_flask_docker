@@ -1,0 +1,30 @@
+version: '3'
+services:
+    elasticsearch:
+        image: elasticsearch:7.5.1
+        ports:
+            - "9200:9200"
+            - "9300:9300"
+        environment:
+            - discovery.type=single-node
+    kibana:
+        image: kibana:7.5.1
+        ports:
+            - "5601:5601"
+        environment:
+            - discovery.type=single-node
+    web_tests:
+        build: ./Dockerfiles/flask
+        ports:
+            - "8888:80"
+            - "5000:5000"
+        volumes:
+            - .:/var/apache_flask
+        entrypoint: "python3 src/app.py"
+    locust_test:
+        build: ./Dockerfiles/locust
+        ports:
+            - "8089:8089"
+        volumes:
+            - .:/var/locust_test
+        entrypoint: "locust -f locust_script.py -H http://web_tests:5000"
