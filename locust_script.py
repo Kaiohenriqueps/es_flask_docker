@@ -1,4 +1,4 @@
-from locust import TaskSet, task, HttpLocust, between
+from locust import TaskSet, task, HttpUser, between
 
 class ESCrudTasks(TaskSet):
     @task
@@ -10,6 +10,6 @@ class ESCrudTasks(TaskSet):
         self.client.get("/search/teste/Kaio")
 
 
-class ApiUser(HttpLocust):
+class ApiUser(HttpUser):
     task_set = ESCrudTasks
     wait_time = between(5, 15)
