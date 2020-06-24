@@ -16,7 +16,6 @@ services:
     web_tests:
         build: ./Dockerfiles/flask
         ports:
-            - "8888:80"
             - "5000:5000"
         volumes:
             - .:/var/apache_flask

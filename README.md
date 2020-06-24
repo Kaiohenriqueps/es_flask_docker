@@ -13,7 +13,6 @@ $ docker-compose up
 | service | port |
 | ----- | ----- |
 | flask | 5000 |
-| apache | 8888 |
 | elasticsearch | 9200 |
 | locust | 8989 |
 
