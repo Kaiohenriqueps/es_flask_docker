@@ -9,4 +9,4 @@ ADD . /var/locust_test/
 WORKDIR /var/locust_test
 RUN ls
 
-RUN pip3 install locustio
+RUN pip3 install locust
