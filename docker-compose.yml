@@ -19,7 +19,10 @@ services:
             - "5000:5000"
         volumes:
             - .:/var/apache_flask
-        entrypoint: "python3 src/app.py"
+        environment:
+            FLASK_APP: 'src/app.py'
+            FLASK_ENV: 'development'
+        command: "flask run -h '0.0.0.0' -p 80"
     locust_test:
         build: ./Dockerfiles/locust
         ports:
