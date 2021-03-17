@@ -15,7 +15,7 @@ def index_doc(my_index: str):
         data = loads(request.data)
         response_index = crud_es.index_doc(es, my_index, data)
         flask_logger.info("doc has been created!")
-        flask.logger.info(dumps(response_index))
+        flask_logger.info(dumps(response_index))
         return response_index, 200
     except Exception as error:
         error_message = "{}:{}".format(error.__class__.__name__, str(error))
