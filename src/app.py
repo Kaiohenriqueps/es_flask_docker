@@ -1,12 +1,17 @@
 import logging
-from lib import crud_es, logger
+from src.lib import crud_es
 from json import loads, dumps
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-flask_logger = logger.set_logger(__name__)
 
+flask_logger = logging.getLogger(__name__)
+
+
+@app.route('/')
+def home():
+   return "hello world!"
 
 @app.route("/index_doc/<string:my_index>", methods=["POST"])
 def index_doc(my_index: str):
@@ -21,7 +26,6 @@ def index_doc(my_index: str):
         error_message = "{}:{}".format(error.__class__.__name__, str(error))
         flask_logger.error(error_message)
         return error_message, 422
-
 
 
 @app.route("/search/<string:my_index>/<string:query>", methods=["GET"])
